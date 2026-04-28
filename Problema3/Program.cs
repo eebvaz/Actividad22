@@ -10,7 +10,7 @@ class Persona
 
 class Empleado: Persona
 {
-
+    
 }
 
 class Visitante : Persona
@@ -20,6 +20,12 @@ class Visitante : Persona
 
 
 class Seguridad : Persona
+{
+
+}
+
+
+class Program
 {
 
 }
