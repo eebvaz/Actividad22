@@ -1,40 +1,39 @@
 ﻿
 using System.Drawing;
 
-class Persona
+class Personal
 {
   
     public string nombre;
 
-    public void Inicio()
+    public virtual void TipoAcceso()
     {
-        Console.WriteLine("Bienvenido");
-    }
-
-}
-
-class Empleado: Persona
-{
-    public void Permiso1()
-    {
-        Console.WriteLine("");
+        Console.WriteLine("Acceso General");
     }
 }
 
-class Visitante : Persona
+class Empleado: Personal
 {
-    public void Permiso2()
+    public override void TipoAcceso()
     {
-        Console.WriteLine("");
+        Console.WriteLine("Acceso de empleado");
+    }
+}
+
+class Visitante : Personal
+{
+    public override void TipoAcceso()
+    {
+        Console.WriteLine("Acceso limitado");
     }
 }
 
 
-class Seguridad : Persona
+class Seguridad : Personal
 {
-    public void Permiso3()
+    public override void TipoAcceso()
     {
-        Console.WriteLine("");
+        Console.WriteLine("Acceso completo");
     }
 }
 
@@ -43,18 +42,12 @@ class Program
 {
     static void Main()
     {
-       Empleado trabajador = new Empleado();
-        trabajador.Permiso1();
-
-       Visitante visita = new Visitante();
-        visita.Permiso2();
-
-       Seguridad seguridad = new Seguridad();
-        seguridad.Permiso3();
-
+        Personal dato1 = new Empleado();
+        Personal dato2 = new Visitante();
+        Personal dato3 = new Seguridad();
 
         int opcion;
-        string nombre, contrasena;
+        string nombre;
 
 
 
@@ -63,9 +56,9 @@ class Program
            
             Console.Clear();
             Console.WriteLine("Inicio");
-            Console.WriteLine("Opcion1: Alumno");
-            Console.WriteLine("Opcion2: Profesor");
-            Console.WriteLine("Opcion3: Coordinador");
+            Console.WriteLine("Opcion1: Emepleado");
+            Console.WriteLine("Opcion2: Visitante");
+            Console.WriteLine("Opcion3: Seguridad");
             Console.WriteLine("Opcion4; Salir");
             Console.Write("Eleccion: ");
 
@@ -77,120 +70,39 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    bool validar1 = false;
 
-                    do
-                    {
                         Console.Clear();
-                        Console.WriteLine("Alumno");
+                        Console.WriteLine("Empleado");
                         Console.Write("Ingrese el usuario: ");
                         nombre = Console.ReadLine();
-                        Console.Write("Ingrese la contraseña: ");
-                        contrasena = Console.ReadLine();
-
-
-                        if (nombre == "Mario")
-                        {
-
-                            if (contrasena == "123456789")
-                            {
-                                estudiante.nombre = nombre;
-                                estudiante.Inciar();
-                                estudiante.Permiso1();
-                                Thread.Sleep(5000);
-                                validar1 = true;
-                            }
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error");
-                            Thread.Sleep(5000);
-                            Console.ReadKey();
-
-                        }
-                    } while (!validar1);
-
+                    dato1.nombre = nombre;
+                    dato1.TipoAcceso();
+                    Thread.Sleep(5000);
+                    Console.ReadKey();
                     break;
                 case 2:
-                    bool validar2 = false;
-
-                    do
-                    {
                         Console.Clear();
-                        Console.WriteLine("Profesor");
+                        Console.WriteLine("Visitante");
                         Console.Write("Ingrese el usuario: ");
                         nombre = Console.ReadLine();
-                        Console.Write("Ingrese la contraseña: ");
-                        contrasena = Console.ReadLine();
-
-
-                        if (nombre == "Carlos" && nombre == "carlos")
-                        {
-
-                            if (contrasena == "examen")
-                            {
-                                maestro.nombre = nombre;
-                                maestro.Inciar();
-                                maestro.Permiso2();
-                                Thread.Sleep(5000);
-                                validar2 = true;
-                            }
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error");
-                            Thread.Sleep(5000);
-                            Console.ReadKey();
-
-                        }
-                    } while (!validar2);
+                    dato2.nombre = nombre;
+                    dato2.TipoAcceso();
+                    Thread.Sleep(5000);
+                    Console.ReadKey();
                     break;
                 case 3:
-                    bool validar3 = false;
-
-                    do
-                    {
                         Console.Clear();
-                        Console.WriteLine("Coordinador");
+                        Console.WriteLine("Seguridad");
                         Console.Write("Ingrese el usuario: ");
                         nombre = Console.ReadLine();
-                        Console.Write("Ingrese la contraseña: ");
-                        contrasena = Console.ReadLine();
-
-
-                        if (nombre == "Ana" && nombre == "ana")
-                        {
-
-                            if (contrasena == "principal")
-                            {
-                                coord.nombre = nombre;
-                                coord.Inciar();
-                                coord.Permiso3();
-                                Thread.Sleep(5000);
-                                validar3 = true;
-                            }
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Error");
-                            Thread.Sleep(5000);
-                            Console.ReadKey();
-
-                        }
-                    } while (!validar3);
+                    dato3.nombre = nombre;
+                    dato3.TipoAcceso();
+                    Thread.Sleep(5000);
+                    Console.ReadKey();
                     break;
                 default:
                     break;
-
-
             }
-
-
-
-
         } while (opcion != 4);
 
     }
